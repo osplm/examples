@@ -10,23 +10,23 @@ jobs:
     runs-on: macOS-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Set app folder
-        id: set_folder
-        run: ls & cd examples/material-ui
       - name: Use Node.js 16
         uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: npm
+        #   cache: npm
       - name: Install dependencies
         id: install_code
         run: npm ci
+        working-directory: ./material-ui
       - name: Build
         id: build_code
         run: npm run build
+        working-directory: ./material-ui
       - name: Run Mobile
         id: run_mobile
         run: npm run mobile
+        working-directory: ./material-ui
       - uses: actions/cache@v3
         with:
           path: ios/App/Pods
@@ -36,6 +36,7 @@ jobs:
       - name: Sync
         id: sync_code
         run: npx cap sync
+        working-directory: ./material-ui
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.7.2
