@@ -23,10 +23,10 @@ jobs:
         id: build_code
         run: npm run build
         working-directory: ./material-ui
-      - name: Run Mobile
-        id: run_mobile
-        run: npm run mobile
-        working-directory: ./material-ui
+    #   - name: Run Mobile
+    #     id: run_mobile
+    #     run: npm run mobile
+    #     working-directory: ./material-ui
       - uses: actions/cache@v3
         with:
           path: ios/App/Pods
